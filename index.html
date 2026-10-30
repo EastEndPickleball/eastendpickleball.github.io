@@ -80,11 +80,18 @@
         "Monday",
         "Tuesday",
         "Wednesday",
-        "Friday",
+        "Friday"
+      ],
+      "opens": "11:30",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
         "Saturday",
         "Sunday"
       ],
-      "opens": "11:30",
+      "opens": "08:00",
       "closes": "22:00"
     }
   ],
@@ -265,7 +272,7 @@
       },
       {
         "@type": "Offer",
-        "name": "Private 1-on-1 Pickleball Lesson, weekends 11:30am-10pm",
+        "name": "Private 1-on-1 Pickleball Lesson, weekends 8am-10pm",
         "price": "100",
         "priceCurrency": "CAD",
         "priceSpecification": {
@@ -275,14 +282,14 @@
           "unitCode": "HUR",
           "unitText": "per hour"
         },
-        "description": "Private 1-on-1 lesson on Saturday or Sunday, 11:30am to 10pm (members' prime booking hours). All-inclusive: court fees, balls and paddles included.",
+        "description": "Private 1-on-1 lesson on Saturday or Sunday, 8am to 10pm (members' prime booking hours). All-inclusive: court fees, balls and paddles included.",
         "itemOffered": {
           "@id": "https://eastendpickleball.github.io/#private"
         }
       },
       {
         "@type": "Offer",
-        "name": "Group Pickleball Lesson, 2 or 3 players, weekends 11:30am-10pm",
+        "name": "Group Pickleball Lesson, 2 or 3 players, weekends 8am-10pm",
         "price": "150",
         "priceCurrency": "CAD",
         "priceSpecification": {
@@ -292,14 +299,14 @@
           "unitCode": "HUR",
           "unitText": "per hour"
         },
-        "description": "Total per hour for a group of 2 or 3 on Saturday or Sunday, 11:30am to 10pm (members' prime booking hours). All-inclusive: court fees, balls and paddles included.",
+        "description": "Total per hour for a group of 2 or 3 on Saturday or Sunday, 8am to 10pm (members' prime booking hours). All-inclusive: court fees, balls and paddles included.",
         "itemOffered": {
           "@id": "https://eastendpickleball.github.io/#group"
         }
       },
       {
         "@type": "Offer",
-        "name": "Group Pickleball Lesson, 4 players, weekends 11:30am-10pm",
+        "name": "Group Pickleball Lesson, 4 players, weekends 8am-10pm",
         "price": "170",
         "priceCurrency": "CAD",
         "priceSpecification": {
@@ -309,7 +316,7 @@
           "unitCode": "HUR",
           "unitText": "per hour"
         },
-        "description": "Total per hour for a group of 4 on Saturday or Sunday, 11:30am to 10pm (members' prime booking hours). All-inclusive: court fees, balls and paddles included.",
+        "description": "Total per hour for a group of 4 on Saturday or Sunday, 8am to 10pm (members' prime booking hours). All-inclusive: court fees, balls and paddles included.",
         "itemOffered": {
           "@id": "https://eastendpickleball.github.io/#group"
         }
@@ -338,7 +345,7 @@
       "name": "How much does a pickleball lesson cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Weekdays (Mon, Tue, Wed and Fri): private 1-on-1 lessons are $80/hr from 11:30am to 4pm and $90/hr from 4pm to 10pm. Group lessons are priced as a total per hour for the whole group: $130/hr for 2 or 3 players and $150/hr for 4 players before 4pm, plus $10/hr after 4pm ($140 and $160). Weekends (Sat and Sun, 11:30am to 10pm, members' prime booking hours): $100/hr private, $150/hr for 2 or 3 players and $170/hr for 4 players. All prices are tax included."
+        "text": "Weekdays (Mon, Tue, Wed and Fri): private 1-on-1 lessons are $80/hr from 11:30am to 4pm and $90/hr from 4pm to 10pm. Group lessons are priced as a total per hour for the whole group: $130/hr for 2 or 3 players and $150/hr for 4 players before 4pm, plus $10/hr after 4pm ($140 and $160). Weekends (Sat and Sun, 8am to 10pm, members' prime booking hours): $100/hr private, $150/hr for 2 or 3 players and $170/hr for 4 players. All prices are tax included."
       }
     },
     {
@@ -378,7 +385,7 @@
       "name": "What days and times are lessons available?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lessons are available Monday, Tuesday, Wednesday, Friday, Saturday and Sunday, between 11:30am and 10pm. Weekend lessons (Saturday and Sunday) are during members' prime booking hours and use weekend rates. Thursdays are fully booked until further notice."
+        "text": "Lessons are available Monday, Tuesday, Wednesday and Friday between 11:30am and 10pm, and Saturday and Sunday between 8am and 10pm (when the club opens). Weekend lessons (Saturday and Sunday) are during members' prime booking hours and use weekend rates. Thursdays are fully booked until further notice."
       }
     },
     {
@@ -417,7 +424,7 @@ var SITE = {
   group4DayPrice: "$150",   group4EveningPrice: "$160",
   /* WEEKEND prices (Saturday & Sunday, all day, members' prime booking hours).
      One price all day. Group prices are the TOTAL per hour for the whole group. */
-  weekendHours:        "11:30am - 10pm",
+  weekendHours:        "8am - 10pm",        // Sat & Sun open at 8am (club opening)
   weekendPrivatePrice: "$100",
   weekendGroup2Price:  "$150",
   weekendGroup3Price:  "$150",
@@ -986,7 +993,7 @@ footer .logo{font-size:.95rem}
         <ul class="rows">
           <li class="row"><div class="lbl"><strong>Weekday daytime</strong><span data-site="privateDayHours">11:30am - 4pm</span></div><div class="amt"><span data-site="privateDayPrice">$80</span><small>/hr</small></div></li>
           <li class="row"><div class="lbl"><strong>Weekday evening</strong><span data-site="privateEveningHours">4pm - 10pm</span></div><div class="amt"><span data-site="privateEveningPrice">$90</span><small>/hr</small></div></li>
-          <li class="row weekend"><div class="lbl"><strong>Weekends (Sat &amp; Sun)</strong><span><span data-site="weekendHours">11:30am - 10pm</span> &middot; prime time</span></div><div class="amt"><span data-site="weekendPrivatePrice">$100</span><small>/hr</small></div></li>
+          <li class="row weekend"><div class="lbl"><strong>Weekends (Sat &amp; Sun)</strong><span><span data-site="weekendHours">8am - 10pm</span> &middot; prime time</span></div><div class="amt"><span data-site="weekendPrivatePrice">$100</span><small>/hr</small></div></li>
         </ul>
         <ul class="incl"><li><svg aria-hidden="true"><use href="#i-check"/></svg>Court fees</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Balls</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Paddles</li></ul>
         <a class="btn btn-lime btn-block" href="#book">Book a Lesson</a>
@@ -1007,7 +1014,7 @@ footer .logo{font-size:.95rem}
         </table>
         <table class="gtable gtable-wk">
           <caption class="sr-only">Weekend group lesson rates (Saturday and Sunday), total per hour for the whole group</caption>
-          <thead><tr><th scope="col">Weekends<span class="prime">Sat &amp; Sun</span></th><th scope="col"><span data-site="weekendHours">11:30am - 10pm</span><span class="prime">Members' prime time</span></th></tr></thead>
+          <thead><tr><th scope="col">Weekends<span class="prime">Sat &amp; Sun</span></th><th scope="col"><span data-site="weekendHours">8am - 10pm</span><span class="prime">Members' prime time</span></th></tr></thead>
           <tbody>
             <tr><th scope="row">2 people</th><td><span class="gp"><span data-site="weekendGroup2Price">$150</span><small>/hr</small></span><span class="pp" data-pp="weekendGroup2Price" data-n="2"></span></td></tr>
             <tr class="best"><th scope="row">3 people<span class="tag">Best value</span></th><td><span class="gp"><span data-site="weekendGroup3Price">$150</span><small>/hr</small></span><span class="pp" data-pp="weekendGroup3Price" data-n="3"></span></td></tr>
@@ -1126,7 +1133,7 @@ footer .logo{font-size:.95rem}
       </details>
       <details>
         <summary><h3>How much does a pickleball lesson cost?</h3></summary>
-        <div class="ans"><p>Weekdays (Mon, Tue, Wed and Fri): private 1-on-1 lessons are $80/hr from 11:30am to 4pm and $90/hr from 4pm to 10pm. Group lessons are priced as a total per hour for the whole group: $130/hr for 2 or 3 players and $150/hr for 4 players before 4pm, plus $10/hr after 4pm ($140 and $160). Weekends (Sat and Sun, 11:30am to 10pm, members' prime booking hours): $100/hr private, $150/hr for 2 or 3 players and $170/hr for 4 players. All prices are tax included.</p></div>
+        <div class="ans"><p>Weekdays (Mon, Tue, Wed and Fri): private 1-on-1 lessons are $80/hr from 11:30am to 4pm and $90/hr from 4pm to 10pm. Group lessons are priced as a total per hour for the whole group: $130/hr for 2 or 3 players and $150/hr for 4 players before 4pm, plus $10/hr after 4pm ($140 and $160). Weekends (Sat and Sun, 8am to 10pm, members' prime booking hours): $100/hr private, $150/hr for 2 or 3 players and $170/hr for 4 players. All prices are tax included.</p></div>
       </details>
       <details>
         <summary><h3>How do I see which lesson times are open?</h3></summary>
@@ -1146,7 +1153,7 @@ footer .logo{font-size:.95rem}
       </details>
       <details>
         <summary><h3>What days and times are lessons available?</h3></summary>
-        <div class="ans"><p>Lessons are available Monday, Tuesday, Wednesday, Friday, Saturday and Sunday, between 11:30am and 10pm. Weekend lessons (Saturday and Sunday) are during members' prime booking hours and use weekend rates. Thursdays are fully booked until further notice.</p></div>
+        <div class="ans"><p>Lessons are available Monday, Tuesday, Wednesday and Friday between 11:30am and 10pm, and Saturday and Sunday between 8am and 10pm (when the club opens). Weekend lessons (Saturday and Sunday) are during members' prime booking hours and use weekend rates. Thursdays are fully booked until further notice.</p></div>
       </details>
       <details>
         <summary><h3>How do I book a pickleball lesson?</h3></summary>
@@ -1166,7 +1173,7 @@ footer .logo{font-size:.95rem}
     <div class="avail-head reveal">
       <span class="eyebrow">Availability</span>
       <h2>Open lesson times</h2>
-      <p class="lead">Pick a day, then tap a green time to send me a request. I'll confirm by text once the court is secured. Lessons run Mon, Tue, Wed, Fri, Sat &amp; Sun, 11:30am to 10pm.</p>
+      <p class="lead">Pick a day, then tap a green time to send me a request. I'll confirm by text once the court is secured. Lessons run Mon, Tue, Wed &amp; Fri 11:30am to 10pm, and Sat &amp; Sun 8am to 10pm.</p>
     </div>
     <div class="avail-card reveal">
       <div class="av-bar">
@@ -1190,7 +1197,7 @@ footer .logo{font-size:.95rem}
     </div>
   </div>
 <!-- AVAILABILITY-DATA:START -->
-<script type="application/json" id="availability-data">{"updated":"2026-10-28T07:15-04:00","tz":"America/Toronto","open":690,"close":1320,"step":30,"gap":30,"minNotice":60,"days":[{"date":"2026-10-28","blocked":[[660,810],[870,1020]]},{"date":"2026-10-30","blocked":[[660,840]]},{"date":"2026-11-02","blocked":[[690,810]]},{"date":"2026-11-03","blocked":[[660,960]]},{"date":"2026-11-04","blocked":[[870,1050]]},{"date":"2026-11-06","blocked":[[810,1080]]},{"date":"2026-11-09","blocked":[]},{"date":"2026-11-10","blocked":[]},{"date":"2026-11-11","blocked":[[870,990]]},{"date":"2026-11-13","blocked":[]},{"date":"2026-11-16","blocked":[]},{"date":"2026-11-17","blocked":[]}]}</script>
+<script type="application/json" id="availability-data">{"version":1,"generatedAt":"2026-10-30T14:28:41-04:00","updated":"2026-10-30T14:28-04:00","tz":"America/Toronto","open":690,"weekendOpen":480,"close":1320,"step":30,"gap":30,"minNotice":60,"days":[{"date":"2026-10-30","blocked":[[660,840]]},{"date":"2026-10-31","blocked":[[570,690]]},{"date":"2026-11-01","blocked":[]},{"date":"2026-11-02","blocked":[[690,810]]},{"date":"2026-11-03","blocked":[[660,960]]},{"date":"2026-11-04","blocked":[[870,1050]]},{"date":"2026-11-06","blocked":[[660,1080]]},{"date":"2026-11-07","blocked":[]},{"date":"2026-11-08","blocked":[]},{"date":"2026-11-09","blocked":[]},{"date":"2026-11-10","blocked":[]},{"date":"2026-11-11","blocked":[[870,1020]]},{"date":"2026-11-13","blocked":[]},{"date":"2026-11-14","blocked":[]},{"date":"2026-11-15","blocked":[]},{"date":"2026-11-16","blocked":[]},{"date":"2026-11-17","blocked":[]},{"date":"2026-11-18","blocked":[[870,990]]}]}</script>
 <!-- AVAILABILITY-DATA:END -->
 </section>
 
@@ -1392,7 +1399,7 @@ footer .logo{font-size:.95rem}
     function valid(d){
       if (!d || typeof d !== 'object' || !Array.isArray(d.days) || !isFinite(ts(d))) return false;
       if (d.tz != null && typeof d.tz !== 'string') return false;
-      if (!['open','close','step','gap','minNotice'].every(function(k){ return d[k] == null || num(d[k]); })) return false;
+      if (!['open','weekendOpen','close','step','gap','minNotice'].every(function(k){ return d[k] == null || num(d[k]); })) return false;
       return d.days.every(function(x){
         return x && typeof x.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x.date) && Array.isArray(x.blocked) &&
           x.blocked.every(function(b){ return Array.isArray(b) && b.length === 2 && num(b[0]) && num(b[1]); });
@@ -1400,14 +1407,14 @@ footer .logo{font-size:.95rem}
     }
     if (!valid(E)) E = null;
     var A = E || {days:[]}, tz = 'America/Toronto', len = 60, sel = 0;
-    var today, nowMin, days = [], openM, closeM, step, notice;
+    var today, nowMin, days = [], openM, wkOpenM, closeM, step, notice;
     var allowed = {0:1,1:1,2:1,3:1,5:1,6:1}; /* Sun Mon Tue Wed Fri Sat (Thursday closed) */
     function dObj(s){ var a=s.split('-'); return new Date(Date.UTC(+a[0],a[1]-1,+a[2],12)); }
     function f(d,o){ o.timeZone='UTC'; return d.toLocaleDateString('en-CA',o); }
     function t12(m){ var h=Math.floor(m/60), mm=m%60; return ((h+11)%12+1)+':'+(mm<10?'0':'')+mm+(h<12?'am':'pm'); }
     function slotsFor(d){
       var out = [];
-      for (var s = openM; s + len <= closeM; s += step){
+      for (var s = isWeekend(d.date) ? wkOpenM : openM; s + len <= closeM; s += step){
         var ok = d.blocked.every(function(b){ return s + len <= b[0] || s >= b[1]; });
         if (d.date === today && s < nowMin + notice) ok = false;
         out.push({s:s, ok:ok});
@@ -1448,7 +1455,7 @@ footer .logo{font-size:.95rem}
         .formatToParts(new Date()).forEach(function(x){ p[x.type]=x.value; });
       today = p.year+'-'+p.month+'-'+p.day; nowMin = ((+p.hour)%24)*60 + (+p.minute);
       days = (A.days||[]).filter(function(d){ return d.date >= today && allowed[dObj(d.date).getUTCDay()]; });
-      openM = A.open||690; closeM = A.close||1320; step = A.step||30; notice = A.minNotice||60;
+      openM = A.open||690; wkOpenM = num(A.weekendOpen) ? A.weekendOpen : 480; closeM = A.close||1320; step = A.step||30; notice = A.minNotice||60;
       sel = 0;
       for (var i=0;i<days.length;i++){ if (slotsFor(days[i]).some(function(x){return x.ok})){ sel=i; break; } }
       renderDays();
