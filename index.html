@@ -792,22 +792,20 @@ footer .logo{font-size:.95rem}
 .rev-head .lead{margin-inline:auto;color:#c9d6ef}
 .rev-cap{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:#dbe6ff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:7px 14px;border-radius:999px}
 .rev-cap svg{width:16px;height:16px;flex:none}
-.rev-cap{max-width:100%;text-align:left;line-height:1.35}
+.rev-cap{max-width:100%;text-align:left;line-height:1.35;white-space:normal;flex-wrap:wrap}
 .rev-grid{display:grid;gap:20px;grid-template-columns:1fr}
-@media (min-width:700px){.rev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (min-width:1100px){.rev-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.rev-grid .rcard{grid-column:span 2}.rev-grid .rcard:nth-child(4){grid-column:2 / span 2}}
-@media (min-width:700px) and (max-width:1099px){.rev-grid .rcard:last-child{grid-column:1/-1}}
+@media (min-width:900px){.rev-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .rcard{position:relative;margin:0;background:#fff;color:var(--ink);border-radius:var(--radius);padding:28px 24px 22px;box-shadow:0 14px 34px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:14px;border-top:5px solid var(--lime);min-width:0}
 .rcard::before{content:"\201C";position:absolute;top:6px;right:18px;font-family:Georgia,serif;font-size:5rem;line-height:1;color:var(--lime);opacity:.55;pointer-events:none}
-.stars{display:flex;gap:3px;color:#F5B301}
-.stars svg{width:20px;height:20px}
 .rcard blockquote{margin:0;flex:1}
 .rcard blockquote p{margin:0 0 .6em;color:#2b3a55;font-size:1rem;line-height:1.6}
 .rcard blockquote p:last-child{margin-bottom:0}
-.rcard .gap{display:block;color:var(--muted);font-weight:700;letter-spacing:.2em;margin:-.2em 0 .4em}
-.rcard figcaption{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--line);font-weight:800;color:var(--navy);font-family:var(--display);font-stretch:108%}
-.rcard .av{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--lime);font-size:1rem}
+.rcard figcaption{display:flex;align-items:flex-start;gap:12px;padding-top:14px;border-top:1px solid var(--line);font-weight:800;color:var(--navy);font-family:var(--display);font-stretch:108%}
+.rcard .av{flex:none;width:38px;height:38px;margin-top:2px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--lime);font-size:1rem}
 .rcard figcaption small{display:block;font-family:var(--body);font-weight:500;font-size:.8rem;color:var(--muted);font-stretch:100%}
+.rcard figcaption .rev-src{display:inline-block;margin-top:6px;font-family:var(--body);font-weight:700;font-size:.9rem;font-stretch:100%;color:var(--navy-2);text-underline-offset:3px}
+.rcard figcaption .rev-src:hover{color:var(--navy)}
+.rcard figcaption .rev-src:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:4px}
 .rev-cta{text-align:center;margin-top:36px}
 @media (max-width:420px){.rcard{padding:24px 18px 18px}}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
@@ -1032,59 +1030,37 @@ footer .logo{font-size:.95rem}
 </section>
 
 <!-- =================== SECTION: REVIEWS ===================
-     Quotes are copied word for word from Google reviews of Picktopia that
-     mention Andrew. "…" marks where part of a review was left out.
-     Do not add star totals or review schema: these reviews are on
-     Picktopia's Google listing, not Andrew's own business profile. -->
+     Short verbatim excerpts from public Google reviews on
+     Picktopia Racquet Sports - Scarborough that mention Andrew.
+     Each card links to that original review. Do not add star totals,
+     a venue aggregate rating, or review schema: these reviews are on
+     Picktopia's Google profile, not East End Pickleball's. -->
 <section class="section reviews" id="reviews">
   <svg class="court-lines" aria-hidden="true" style="color:#fff"><rect width="100%" height="100%" fill="url(#courtPat)"/></svg>
   <div class="wrap" style="position:relative">
     <div class="rev-head reveal">
       <span class="eyebrow">Reviews</span>
-      <h2>What students say about my lessons</h2>
-      <p class="rev-cap"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#F5B301"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><span>Real Google reviews from students at <span data-site="venueName">Picktopia</span></span></p>
+      <h2>What students say about Andrew at Picktopia</h2>
+      <p class="rev-cap">Originally posted on Picktopia’s Google profile.</p>
     </div>
     <div class="rev-grid">
       <figure class="rcard reveal">
-        <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
         <blockquote>
-          <p>Andrew is an incredible instructor. He was patient, knowledgeable, and did a fantastic job breaking things down in a way that was easy to understand and apply on the court. He paid close attention to my technique, gave me great feedback, and helped me build confidence in my game.</p>
-          <span class="gap" aria-label="text omitted">…</span>
-          <p>My pickleball game has improved dramatically since working with Andrew. I highly recommend Picktopia and especially Andrew to anyone looking to improve their pickleball game.</p>
+          <p>Andrew is an amazing instructor! He’s incredibly knowledgeable, patient, kind, and encouraging.</p>
         </blockquote>
-        <figcaption><span class="av" aria-hidden="true">M</span><span>Mark W.<small>Google review</small></span></figcaption>
+        <figcaption><span class="av" aria-hidden="true">S</span><span>Steffie Nastos<small>Picktopia Google review</small><a class="rev-src" href="https://maps.app.goo.gl/Zw2NXPvLkozYGWfL9" target="_blank" rel="noopener noreferrer">Read original review<span class="sr-only"> by Steffie Nastos (opens in a new tab)</span></a></span></figcaption>
       </figure>
       <figure class="rcard reveal">
-        <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
         <blockquote>
-          <p>Andrew is an amazing instructor! He’s incredibly knowledgeable, patient, kind, and encouraging. His valuable insights and helpful tips made learning pickleball so enjoyable, and his encouragement gave me the confidence to keep playing. Highly recommended—especially Andrew!</p>
+          <p>He’s an exceptional instructor — patient, knowledgeable, and great at breaking down technique in a way that actually clicks.</p>
         </blockquote>
-        <figcaption><span class="av" aria-hidden="true">S</span><span>Steffie N.<small>Google review</small></span></figcaption>
+        <figcaption><span class="av" aria-hidden="true">S</span><span>Stuart Perry<small>Picktopia Google review</small><a class="rev-src" href="https://maps.app.goo.gl/k5Dw3bLScNXxaB836" target="_blank" rel="noopener noreferrer">Read original review<span class="sr-only"> by Stuart Perry (opens in a new tab)</span></a></span></figcaption>
       </figure>
       <figure class="rcard reveal">
-        <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
         <blockquote>
-          <p>As an intermediate player, I was looking to level up my game, and that’s where Andrew came in. He’s an exceptional instructor — patient, knowledgeable, and great at breaking down technique in a way that actually clicks. After just a few sessions with him, I noticed a real difference in my consistency and court awareness. He has a gift for reading your game and knowing exactly what to work on.</p>
-          <span class="gap" aria-label="text omitted">…</span>
-          <p>And if Andrew has availability, book a lesson. You won’t regret it.</p>
+          <p>my lesson with Andrew really stood out. Amazing experience, he’s very knowledgeable on the sport and a great teacher !</p>
         </blockquote>
-        <figcaption><span class="av" aria-hidden="true">G</span><span>Google reviewer<small>Google review</small></span></figcaption>
-      </figure>
-      <figure class="rcard reveal">
-        <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
-        <blockquote>
-          <p>A big bonus is that Andrew, a highly ranked player, offers lessons there at a very reasonable price. It’s perfect if you’re looking to improve your game.</p>
-        </blockquote>
-        <figcaption><span class="av" aria-hidden="true">R</span><span>Rachel H.<small>Google review</small></span></figcaption>
-      </figure>
-      <figure class="rcard reveal">
-        <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
-        <blockquote>
-          <p>A gentleman name Andrew was my coach. Very nice guy, easy to socialize with and showed me quick great techniques to improve my game.</p>
-          <span class="gap" aria-label="text omitted">…</span>
-          <p>Definitely will be coming back for additional lessons.</p>
-        </blockquote>
-        <figcaption><span class="av" aria-hidden="true">G</span><span>Google reviewer<small>Google review</small></span></figcaption>
+        <figcaption><span class="av" aria-hidden="true">D</span><span>Daniel Vanin<small>Picktopia Google review</small><a class="rev-src" href="https://maps.app.goo.gl/T8oLSLzXEumBmkQP8" target="_blank" rel="noopener noreferrer">Read original review<span class="sr-only"> by Daniel Vanin (opens in a new tab)</span></a></span></figcaption>
       </figure>
     </div>
     <div class="rev-cta reveal"><a class="btn btn-lime" href="#book">Book a Lesson</a></div>
