@@ -539,6 +539,9 @@ p{margin:0 0 1em}
 .cred{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--navy);font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin-bottom:18px}
 .cred svg{width:16px;height:16px}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px}
+.hero-ctas .btn-lime{min-height:56px;padding:18px 32px;font-size:1.08rem}
+.hero-ctas .btn-lime svg{width:24px;height:24px}
+.hero-ctas .btn-ghost{min-height:56px;padding:16px 28px}
 .allin{display:flex;align-items:center;gap:16px;background:#fff;color:var(--navy);border-radius:var(--radius);padding:18px 20px;box-shadow:0 20px 40px rgba(0,0,0,.25);max-width:560px;border-left:8px solid var(--lime)}
 .allin strong{font-family:var(--display);font-stretch:112%;font-weight:900;text-transform:uppercase;font-size:1.15rem;display:block;line-height:1.1}
 .allin span{color:var(--muted);font-size:.95rem}
@@ -683,9 +686,9 @@ p{margin:0 0 1em}
 @media (min-width:960px){.book-grid{grid-template-columns:.85fr 1.15fr;align-items:start}}
 .text-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:28px 24px}
 .text-card h3{font-size:1.4rem;text-transform:uppercase}
-.btn-text{width:100%;font-size:1.1rem;padding:20px 22px;margin:10px 0 14px}
+.btn-text{width:100%;min-height:56px;font-size:1.1rem;padding:20px 22px;margin:10px 0 14px}
 .btn-text svg{width:26px;height:26px}
-@media (max-width:420px){.btn-text{font-size:.98rem;padding:18px 16px;gap:8px;text-align:center}}
+@media (max-width:420px){.btn-text{min-height:56px;font-size:.98rem;padding:18px 16px;gap:8px;text-align:center}}
 .call-link{display:inline-flex;align-items:center;gap:8px;color:var(--mint);font-weight:700;text-decoration:none}
 .call-link:hover{text-decoration:underline}
 .call-link svg{width:18px;height:18px}
@@ -776,6 +779,16 @@ legend{font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:upper
 .av-stale{margin:12px 0 0;font-size:.85rem;font-weight:700;color:#8a5a00}
 .av-stale[hidden]{display:none}
 .av-empty{padding:18px;text-align:center;color:var(--muted);font-weight:600;background:#fff;border-radius:16px}
+
+/* ---------- Sticky mobile booking bar ---------- */
+.book-bar{display:none}
+@media (max-width:860px){
+  .book-bar{display:flex;align-items:center;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(11,42,91,.96);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-top:3px solid var(--lime);padding:10px 16px calc(10px + env(safe-area-inset-bottom, 0px));box-shadow:0 -8px 24px rgba(11,42,91,.28)}
+  .book-bar .btn{flex:1;min-height:48px;padding:12px 10px;font-size:.82rem;box-shadow:none}
+  .book-bar .btn-lime{box-shadow:0 4px 0 var(--lime-2)}
+  .book-bar .btn svg{width:18px;height:18px}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px))}
+}
 
 /* ---------- Footer ---------- */
 footer{background:var(--navy-3);color:#9fb2d6;padding:36px 0;font-size:.92rem}
@@ -892,7 +905,7 @@ footer .logo{font-size:.95rem}
       <h1><span class="kicker">East End Pickleball · Pickleball Lessons in Scarborough</span> Level up your <span class="hl">pickleball</span> game</h1>
       <p class="sub">Fun, focused <strong>private &amp; group pickleball coaching</strong> for beginners to intermediates in Scarborough's East End, with a Level 1 certified pickleball instructor at <span data-site="venueName">Picktopia</span>.</p>
       <div class="hero-ctas">
-        <a class="btn btn-lime" href="#book"><svg aria-hidden="true"><use href="#i-sms"/></svg>Book a Lesson</a>
+        <a class="btn btn-lime" href="#book" data-umami-event="book-cta-top"><svg aria-hidden="true"><use href="#i-sms"/></svg>Book a lesson</a>
         <a class="btn btn-ghost" href="#pricing">See Rates</a>
       </div>
       <div class="allin">
@@ -1246,6 +1259,12 @@ footer .logo{font-size:.95rem}
   </div>
 </section>
 </main>
+
+<!-- =================== STICKY MOBILE BOOKING BAR =================== -->
+<nav class="book-bar" aria-label="Book a lesson">
+  <a class="btn btn-lime js-sms" data-via="Sticky Text to Book bar" href="sms:+16477007014?&amp;body=%F0%9F%8C%90%20WEBSITE%20REQUEST%20(eastendpickleball.github.io)%0A%0AHi!%20I'd%20like%20to%20book%20a%20pickleball%20lesson."><svg aria-hidden="true"><use href="#i-sms"/></svg>Text to book</a>
+  <a class="btn btn-ghost" href="#book">Book a lesson</a>
+</nav>
 
 <!-- =================== SECTION: FOOTER =================== -->
 <footer>
