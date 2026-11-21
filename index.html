@@ -930,7 +930,7 @@ footer .logo{font-size:.95rem}
       <li><a href="#location">Location</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#availability">Availability</a></li>
-      <li><a class="btn btn-lime" href="#book">Book a Lesson</a></li>
+      <li><a class="btn btn-lime" href="#open-times">Book a Lesson</a></li>
     </ul>
   </div>
 </header>
@@ -947,7 +947,7 @@ footer .logo{font-size:.95rem}
       <h1><span class="kicker">East End Pickleball · Pickleball Lessons in Scarborough</span> Level up your <span class="hl">pickleball</span> game</h1>
       <p class="sub">Fun, focused <strong>private &amp; group pickleball coaching</strong> for beginners to intermediates in Scarborough's East End, with a Level 1 certified pickleball instructor at <span data-site="venueName">Picktopia</span>.</p>
       <div class="hero-ctas">
-        <a class="btn btn-lime" href="#book" data-umami-event="book-cta-top"><svg aria-hidden="true"><use href="#i-sms"/></svg>Book a lesson</a>
+        <a class="btn btn-lime" href="#open-times" data-umami-event="book-cta-top"><svg aria-hidden="true"><use href="#i-sms"/></svg>Book a lesson</a>
         <a class="btn btn-ghost" href="#pricing">See Rates</a>
       </div>
       <div class="allin">
@@ -1024,7 +1024,7 @@ footer .logo{font-size:.95rem}
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>Skill-building drills matched to your level</li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>Private 1-on-1 or small groups of 2 to 4 friends</li>
       </ul>
-      <a class="btn btn-navy" href="#book">Book a Lesson</a>
+      <a class="btn btn-navy" href="#open-times">Book a Lesson</a>
     </div>
   </div>
 </section>
@@ -1051,7 +1051,7 @@ footer .logo{font-size:.95rem}
           <li class="row weekend"><div class="lbl"><strong>Weekends (Sat &amp; Sun)</strong><span><span data-site="weekendHours">8am - 10pm</span> &middot; prime time</span></div><div class="amt"><span data-site="weekendPrivatePrice">$100</span><small>/hr</small></div></li>
         </ul>
         <ul class="incl"><li><svg aria-hidden="true"><use href="#i-check"/></svg>Court fees</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Balls</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Paddles</li></ul>
-        <a class="btn btn-lime btn-block" href="#book">Book a Lesson</a>
+        <a class="btn btn-lime btn-block" href="#open-times">Book a Lesson</a>
       </article>
 
       <!-- Group lessons card -->
@@ -1078,7 +1078,7 @@ footer .logo{font-size:.95rem}
         </table>
         <p class="gnote">The more friends you bring, the less each person pays. On weekdays after 4pm, group rates include a $10/hr prime-time court fee increase. Saturday and Sunday are members' prime booking hours, so weekend lessons have one all-day rate.</p>
         <ul class="incl"><li><svg aria-hidden="true"><use href="#i-check"/></svg>Court fees</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Balls</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Paddles</li></ul>
-        <a class="btn btn-lime btn-block" href="#book">Book a Lesson</a>
+        <a class="btn btn-lime btn-block" href="#open-times">Book a Lesson</a>
       </article>
     </div>
     <p class="paynote reveal"><b>Payment:</b><span>cash or Interac e-Transfer only.</span><span>All prices are tax included.</span></p>
@@ -1120,7 +1120,7 @@ footer .logo{font-size:.95rem}
         <figcaption><span class="av" aria-hidden="true">D</span><span>Daniel Vanin<small>Picktopia Google review</small><a class="rev-src" href="https://maps.app.goo.gl/T8oLSLzXEumBmkQP8" target="_blank" rel="noopener noreferrer">Read original review<span class="sr-only"> by Daniel Vanin (opens in a new tab)</span></a></span></figcaption>
       </figure>
     </div>
-    <div class="rev-cta reveal"><a class="btn btn-lime" href="#book">Book a Lesson</a></div>
+    <div class="rev-cta reveal"><a class="btn btn-lime" href="#open-times">Book a Lesson</a></div>
   </div>
 </section>
 
@@ -1208,7 +1208,7 @@ footer .logo{font-size:.95rem}
       <h2>Open lesson times</h2>
       <p class="lead">Pick a day, then tap a green time to send me a request. I'll confirm by text once the court is secured. Lessons run Mon, Tue, Wed &amp; Fri 11:30am to 10pm, and Sat &amp; Sun 8am to 10pm.</p>
     </div>
-    <div class="avail-card reveal">
+    <div class="avail-card reveal" id="open-times">
       <div class="av-bar">
         <div class="av-len" role="group" aria-label="Lesson length">
           <button type="button" data-len="60" aria-pressed="true">1 hr</button>
@@ -1244,7 +1244,7 @@ footer .logo{font-size:.95rem}
 
     <div class="book-grid">
       <!-- Text / call card -->
-      <div class="text-card reveal">
+      <div class="text-card reveal" id="text-to-book">
         <h3>Text to book</h3>
         <p style="color:#c9d7f2;margin:0">Tap below to open your messages with a note ready to go.</p>
         <a class="btn btn-lime btn-text js-sms" data-via="Text to Book button" href="sms:+16477007014?&amp;body=%F0%9F%8C%90%20WEBSITE%20REQUEST%20(eastendpickleball.github.io)%0A%0AHi!%20I'd%20like%20to%20book%20a%20pickleball%20lesson."><svg aria-hidden="true"><use href="#i-sms"/></svg><span>Text <span data-site="phoneDisplay" style="white-space:nowrap">647-700-7014</span> to Book</span></a>
@@ -1304,8 +1304,8 @@ footer .logo{font-size:.95rem}
 
 <!-- =================== STICKY MOBILE BOOKING BAR =================== -->
 <nav class="book-bar" aria-label="Book a lesson">
-  <a class="btn btn-lime js-sms" data-via="Sticky Text to Book bar" href="sms:+16477007014?&amp;body=%F0%9F%8C%90%20WEBSITE%20REQUEST%20(eastendpickleball.github.io)%0A%0AHi!%20I'd%20like%20to%20book%20a%20pickleball%20lesson."><svg aria-hidden="true"><use href="#i-sms"/></svg>Text to book</a>
-  <a class="btn btn-ghost" href="#book">Book a lesson</a>
+  <a class="btn btn-lime" href="#text-to-book"><svg aria-hidden="true"><use href="#i-sms"/></svg>Text to book</a>
+  <a class="btn btn-ghost" href="#open-times">Book a lesson</a>
 </nav>
 
 <!-- =================== SECTION: FOOTER =================== -->
