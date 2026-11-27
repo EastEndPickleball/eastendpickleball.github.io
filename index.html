@@ -1421,16 +1421,16 @@ footer .logo{font-size:.95rem}
     function dObj(s){ var a=s.split('-'); return new Date(Date.UTC(+a[0],a[1]-1,+a[2],12)); }
     function ymd(d){ return d.toISOString().slice(0,10); }
     function isThu(date){ return dObj(date).getUTCDay() === 4; }
-    /* Build a Sat–Fri week grid, including Thursday closed boxes and
-       muted past days so Friday always sits in the last column. */
+    /* Build a Mon–Sun week grid, including Thursday closed boxes and
+       muted past days so Sunday always sits in the last column. */
     function buildDays(raw){
       var byDate = {}, last = today;
       (raw || []).forEach(function(d){
         if (d && d.date){ byDate[d.date] = d; if (d.date > last) last = d.date; }
       });
-      var startD = dObj(today), back = (startD.getUTCDay() + 1) % 7;
+      var startD = dObj(today), back = (startD.getUTCDay() + 6) % 7;
       var start = new Date(startD); start.setUTCDate(startD.getUTCDate() - back);
-      var l = dObj(last), fwd = (5 - l.getUTCDay() + 7) % 7;
+      var l = dObj(last), fwd = (7 - l.getUTCDay()) % 7;
       var end = new Date(l); end.setUTCDate(l.getUTCDate() + fwd);
       var out = [];
       for (var d = new Date(start); d <= end; d.setUTCDate(d.getUTCDate() + 1)){
