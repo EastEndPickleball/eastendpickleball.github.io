@@ -738,16 +738,31 @@ legend{font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:upper
 .av-legend li{display:inline-flex;align-items:center;gap:6px}
 .av-legend i{width:14px;height:14px;border-radius:5px;display:inline-block}
 .av-legend .g{background:var(--lime)} .av-legend .x{background:#e3e7ee;border:1px dashed #b4bccb}
-.av-days{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
-@media (min-width:960px){.av-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));overflow:visible}.av-day{min-width:0}}
-.av-day{flex:none;scroll-snap-align:start;min-width:84px;font:inherit;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--line);border-radius:16px;padding:9px 10px;color:var(--navy);line-height:1.15;transition:.15s}
+.av-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;padding:4px 2px 10px;overflow:visible}
+.av-day{min-width:0;width:100%;font:inherit;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--line);border-radius:16px;padding:9px 6px;color:var(--navy);line-height:1.15;transition:.15s;position:relative}
 .av-day b{display:block;font-family:var(--display);font-stretch:110%;font-weight:900;text-transform:uppercase;font-size:.85rem}
 .av-day span{display:block;font-weight:700;font-size:.95rem}
 .av-day small{display:block;margin-top:4px;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#2f7d16}
-.av-day.full small{color:#8a93a3}
-.av-day.full{background:#f4f5f8;color:#7d879a}
+.av-day.full{background:#fdecec;border-color:#e57373;color:#b71c1c;grid-column:auto}
+.av-day.full small{color:#c62828}
+.av-day.closed-thu{background:#fdecec;border-color:#e57373;color:#b71c1c;cursor:default;pointer-events:none}
+.av-day.closed-thu small{color:#c62828;letter-spacing:.02em}
+.av-day.past{background:#f4f5f8;border-color:#e3e7ee;color:#9aa3b2;cursor:default}
+.av-day.past small{color:#9aa3b2}
+.av-day.spacer{visibility:hidden;pointer-events:none;border:0;background:transparent;box-shadow:none;min-height:0;padding:9px 6px}
 .av-day[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 .av-day[aria-selected="true"] small{color:var(--lime)}
+.av-day.full[aria-selected="true"]{background:#b71c1c;border-color:#b71c1c;color:#fff}
+.av-day.full[aria-selected="true"] small{color:#ffcdd2}
+.av-slots.day-full .slot.booked{background:#fdecec;color:#b71c1c;border:1px dashed #e57373}
+.av-slots .av-disclaimer,.av-slots .av-empty{grid-column:1/-1}
+@media (max-width:700px){
+  .av-days{gap:4px}
+  .av-day{padding:7px 2px;border-radius:12px}
+  .av-day b{font-size:.68rem}
+  .av-day span{font-size:.72rem}
+  .av-day small{font-size:.55rem;letter-spacing:0;margin-top:3px}
+}
 .av-day:focus-visible,.slot:focus-visible,.av-len button:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(182,240,60,.6)}
 .av-daytitle{font-family:var(--display);font-stretch:110%;font-weight:900;text-transform:uppercase;color:var(--navy);font-size:1.15rem;margin:14px 0 12px}
 .av-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
@@ -1404,6 +1419,30 @@ footer .logo{font-size:.95rem}
     var WEEKEND_OPEN = 12*60, WEEKEND_CLOSE = 22*60;
     var allowed = {0:1,1:1,2:1,3:1,5:1,6:1}; /* Sun Mon Tue Wed Fri Sat (Thursday=4 closed) */
     function dObj(s){ var a=s.split('-'); return new Date(Date.UTC(+a[0],a[1]-1,+a[2],12)); }
+    function ymd(d){ return d.toISOString().slice(0,10); }
+    function isThu(date){ return dObj(date).getUTCDay() === 4; }
+    /* Build a Sat–Fri week grid, including Thursday closed boxes and
+       muted past days so Friday always sits in the last column. */
+    function buildDays(raw){
+      var byDate = {}, last = today;
+      (raw || []).forEach(function(d){
+        if (d && d.date){ byDate[d.date] = d; if (d.date > last) last = d.date; }
+      });
+      var startD = dObj(today), back = (startD.getUTCDay() + 1) % 7;
+      var start = new Date(startD); start.setUTCDate(startD.getUTCDate() - back);
+      var l = dObj(last), fwd = (5 - l.getUTCDay() + 7) % 7;
+      var end = new Date(l); end.setUTCDate(l.getUTCDate() + fwd);
+      var out = [];
+      for (var d = new Date(start); d <= end; d.setUTCDate(d.getUTCDate() + 1)){
+        var date = ymd(d), w = d.getUTCDay();
+        if (w === 4){ out.push({date:date, closedThu:true, blocked:[[0, 24*60]]}); continue; }
+        if (date < today){ out.push({date:date, past:true, blocked:[]}); continue; }
+        if (byDate[date]){ out.push(byDate[date]); continue; }
+        if (date > last){ out.push({date:date, spacer:true, blocked:[]}); continue; }
+        out.push({date:date, blocked:[]});
+      }
+      return out;
+    }
     function f(d,o){ o.timeZone='UTC'; return d.toLocaleDateString('en-CA',o); }
     function t12(m){ var h=Math.floor(m/60), mm=m%60; return ((h+11)%12+1)+':'+(mm<10?'0':'')+mm+(h<12?'am':'pm'); }
     function dayWindow(date){
@@ -1413,7 +1452,7 @@ footer .logo{font-size:.95rem}
     }
     function slotsFor(d){
       var out = [], w = dayWindow(d.date);
-      if (!allowed[dObj(d.date).getUTCDay()]) return out;
+      if (d.closedThu || d.past || d.spacer || !allowed[dObj(d.date).getUTCDay()]) return out;
       for (var s = w.open; s + len <= w.close; s += step){
         var ok = d.blocked.every(function(b){ return s + len <= b[0] || s >= b[1]; });
         if (d.date === today && s < nowMin + notice) ok = false;
@@ -1428,7 +1467,19 @@ footer .logo{font-size:.95rem}
       if (!days.length){ box.innerHTML=''; $('.js-av-title').textContent=''; 
         $('.js-av-slots').innerHTML = '<p class="av-empty">The calendar is being updated. Text <a class="js-sms" data-via="Calendar (no times listed)" href="'+smsHref("Hi Andrew! What lesson times do you have open?", "Calendar (no times listed)")+'">'+S.phoneDisplay+'</a> for open times.</p>'; return; }
       box.innerHTML = days.map(function(d,i){
-        var n = slotsFor(d).filter(function(x){return x.ok}).length, dt=dObj(d.date);
+        var dt=dObj(d.date);
+        if (d.spacer) return '<div class="av-day spacer" aria-hidden="true"></div>';
+        if (d.past){
+          return '<button type="button" class="av-day past" disabled aria-disabled="true" data-i="'+i+'">'+
+            '<b>'+f(dt,{weekday:'short'})+'</b><span>'+f(dt,{month:'short',day:'numeric'})+'</span>'+
+            '<small>Past</small></button>';
+        }
+        if (d.closedThu){
+          return '<div class="av-day closed-thu" aria-disabled="true" aria-label="'+f(dt,{weekday:'long',month:'long',day:'numeric'})+', no availability">'+
+            '<b>'+f(dt,{weekday:'short'})+'</b><span>'+f(dt,{month:'short',day:'numeric'})+'</span>'+
+            '<small>No availability</small></div>';
+        }
+        var n = slotsFor(d).filter(function(x){return x.ok}).length;
         return '<button type="button" role="tab" class="av-day'+(n?'':' full')+'" aria-selected="'+(i===sel)+'" data-i="'+i+'">'+
           '<b>'+(d.date===today?'Today':f(dt,{weekday:'short'}))+'</b><span>'+f(dt,{month:'short',day:'numeric'})+'</span>'+
           '<small>'+(n ? n+' open' : 'Booked')+'</small></button>';
@@ -1437,9 +1488,22 @@ footer .logo{font-size:.95rem}
     }
     function renderSlots(){
       var d = days[sel], dt = dObj(d.date), long = f(dt,{weekday:'long',month:'long',day:'numeric'});
+      var slotsBox = $('.js-av-slots');
+      slotsBox.classList.remove('day-full');
+      if (!d || d.spacer || d.past){
+        $('.js-av-title').textContent = d && d.past ? long : '';
+        slotsBox.innerHTML = d && d.past ? '<p class="av-empty">This day has already passed. Please pick another day.</p>' : '';
+        return;
+      }
+      if (d.closedThu){
+        $('.js-av-title').textContent = long;
+        slotsBox.innerHTML = '<div class="av-disclaimer" role="status"><strong>Closed Thursdays, no bookings</strong><p>Thursday is a complete day off. Please pick another day.</p></div>';
+        return;
+      }
       $('.js-av-title').textContent = long + ' \u00b7 ' + lenText().replace('-',' ') + ' lessons';
       var list = slotsFor(d);
-      $('.js-av-slots').innerHTML = list.map(function(x){
+      if (list.length && !list.some(function(x){ return x.ok; })) slotsBox.classList.add('day-full');
+      slotsBox.innerHTML = list.map(function(x){
         var label = t12(x.s);
         if (!x.ok) return '<span class="slot booked" aria-label="'+label+' booked"><b>'+label+'</b><small>Booked</small></span>';
         var body = "Hi Andrew! I'd like to request a " + lenText() + " pickleball lesson on " + long + " at " + label +
@@ -1454,11 +1518,11 @@ footer .logo{font-size:.95rem}
       var p = {}; new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'})
         .formatToParts(new Date()).forEach(function(x){ p[x.type]=x.value; });
       today = p.year+'-'+p.month+'-'+p.day; nowMin = ((+p.hour)%24)*60 + (+p.minute);
-      days = (A.days||[]).filter(function(d){ return d.date >= today && allowed[dObj(d.date).getUTCDay()]; });
+      days = buildDays(A.days||[]);
       /* Hours come only from the WEEKDAY_ and WEEKEND_ hard blocks above, never from JSON or fallbacks. */
       step = (num(A.step) && A.step > 0) ? A.step : 30; notice = num(A.minNotice) ? A.minNotice : 60;
       sel = 0;
-      for (var i=0;i<days.length;i++){ if (slotsFor(days[i]).some(function(x){return x.ok})){ sel=i; break; } }
+      for (var i=0;i<days.length;i++){ if (!days[i].past && !days[i].closedThu && !days[i].spacer && slotsFor(days[i]).some(function(x){return x.ok})){ sel=i; break; } }
       renderDays();
       var t = ts(A), meta = metaBase;
       if (isFinite(t)) meta += ' Last updated ' + new Date(t).toLocaleString('en-US',{timeZone:tz,weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) + ' (Toronto time).';
@@ -1469,7 +1533,7 @@ footer .logo{font-size:.95rem}
       if (staleEl) staleEl.hidden = !stale;
     }
     box.addEventListener('click', function(e){
-      var b = e.target.closest('.av-day'); if (!b) return;
+      var b = e.target.closest('.av-day'); if (!b || b.disabled || b.classList.contains('spacer') || b.classList.contains('past') || b.classList.contains('closed-thu')) return;
       sel = +b.getAttribute('data-i');
       $$('.av-day', box).forEach(function(x){ x.setAttribute('aria-selected', x===b); });
       renderSlots();
