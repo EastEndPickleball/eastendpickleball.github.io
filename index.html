@@ -741,12 +741,13 @@ legend{font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:upper
 .av-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;padding:4px 2px 10px;overflow:visible}
 .av-day{min-width:0;width:100%;font:inherit;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--line);border-radius:16px;padding:9px 6px;color:var(--navy);line-height:1.15;transition:.15s;position:relative}
 .av-day b{display:block;font-family:var(--display);font-stretch:110%;font-weight:900;text-transform:uppercase;font-size:.85rem}
-.av-day span{display:block;font-weight:700;font-size:.95rem}
+.av-day > span{display:block;font-weight:700;font-size:.95rem}
 .av-day small{display:block;margin-top:4px;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#2f7d16}
 .av-day.full{background:#fdecec;border-color:#e57373;color:#b71c1c;grid-column:auto}
 .av-day.full small{color:#c62828}
 .av-day.closed-thu{background:#fdecec;border-color:#e57373;color:#b71c1c;cursor:default;pointer-events:none}
 .av-day.closed-thu small{color:#c62828;letter-spacing:.02em}
+.av-day .av-label-short{display:none}
 .av-day.past{background:#f4f5f8;border-color:#e3e7ee;color:#9aa3b2;cursor:default}
 .av-day.past small{color:#9aa3b2}
 .av-day.spacer{visibility:hidden;pointer-events:none;border:0;background:transparent;box-shadow:none;min-height:0;padding:9px 6px}
@@ -757,11 +758,16 @@ legend{font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:upper
 .av-slots.day-full .slot.booked{background:#fdecec;color:#b71c1c;border:1px dashed #e57373}
 .av-slots .av-disclaimer,.av-slots .av-empty{grid-column:1/-1}
 @media (max-width:700px){
-  .av-days{gap:4px}
-  .av-day{padding:7px 2px;border-radius:12px}
-  .av-day b{font-size:.68rem}
-  .av-day span{font-size:.72rem}
-  .av-day small{font-size:.55rem;letter-spacing:0;margin-top:3px}
+  .avail-card{padding:22px 10px}
+  .av-days{gap:3px;align-items:stretch}
+  .av-day{padding:6px 1px;border-radius:12px;overflow:hidden;height:100%}
+  .av-day b{font-size:clamp(0.48rem, 2.2vw, 0.68rem)}
+  .av-day > span{font-size:clamp(0.55rem, 2.55vw, 0.72rem)}
+  .av-day small{font-size:clamp(0.4rem, 1.8vw, 0.55rem);letter-spacing:0;margin-top:3px}
+  .av-day.closed-thu small{letter-spacing:-0.02em}
+  .av-day .av-label-full{display:none}
+  .av-day .av-label-short{display:inline}
+  .av-day b,.av-day > span,.av-day small{overflow:hidden;white-space:nowrap;max-width:100%}
 }
 .av-day:focus-visible,.slot:focus-visible,.av-len button:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(182,240,60,.6)}
 .av-daytitle{font-family:var(--display);font-stretch:110%;font-weight:900;text-transform:uppercase;color:var(--navy);font-size:1.15rem;margin:14px 0 12px}
@@ -1477,7 +1483,7 @@ footer .logo{font-size:.95rem}
         if (d.closedThu){
           return '<div class="av-day closed-thu" aria-disabled="true" aria-label="'+f(dt,{weekday:'long',month:'long',day:'numeric'})+', no availability">'+
             '<b>'+f(dt,{weekday:'short'})+'</b><span>'+f(dt,{month:'short',day:'numeric'})+'</span>'+
-            '<small>No availability</small></div>';
+            '<small><span class="av-label-full">No availability</span><span class="av-label-short">No spots</span></small></div>';
         }
         var n = slotsFor(d).filter(function(x){return x.ok}).length;
         return '<button type="button" role="tab" class="av-day'+(n?'':' full')+'" aria-selected="'+(i===sel)+'" data-i="'+i+'">'+
